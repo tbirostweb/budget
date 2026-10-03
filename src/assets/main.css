@@ -1,0 +1,118 @@
+:root,
+:root[data-theme='dark'] {
+  --bg: #0a0a0b;
+  --surface: #141416;
+  --surface-2: #1c1c20;
+  --surface-3: #26262b;
+  --border: #2b2b31;
+  --text: #f5f5f7;
+  --text-dim: #9a9aa2;
+  --text-faint: #6a6a72;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme='light'] {
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --surface-2: #f0f1f4;
+  --surface-3: #e6e7eb;
+  --border: #e2e3e8;
+  --text: #16161a;
+  --text-dim: #6b6b74;
+  --text-faint: #9a9aa2;
+  --shadow: 0 8px 30px rgba(20, 20, 40, 0.08);
+}
+
+:root {
+  --teal: #14c8a0;
+  --blue: #5b6cff;
+  --purple: #8b5cf6;
+  --yellow: #eab308;
+  --red: #ff4d5e;
+  --green: #16b364;
+  --orange: #f0932b;
+
+  --radius: 22px;
+  --radius-sm: 14px;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #app { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+input, select { font-family: inherit; }
+
+.app-shell {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100%;
+  position: relative;
+  background: var(--bg);
+}
+
+.screen { padding: 0 20px 130px; }
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.bar { height: 7px; border-radius: 7px; background: var(--surface-3); overflow: hidden; }
+.bar > span { display: block; height: 100%; border-radius: 7px; transition: width 0.5s ease; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 12px; border-radius: 999px; background: var(--surface-3);
+  font-size: 13px; font-weight: 600;
+}
+
+.section-title {
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-dim); font-weight: 700;
+}
+
+/* Icône dans une pastille colorée */
+.icon-badge {
+  display: grid; place-items: center; border-radius: 13px; flex-shrink: 0;
+  color: #fff;
+}
+
+.segment { display: flex; background: var(--surface-2); border-radius: 14px; padding: 4px; gap: 4px; }
+.segment button {
+  flex: 1; padding: 10px 8px; border-radius: 11px; font-size: 14px;
+  font-weight: 600; color: var(--text-dim); transition: all 0.15s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+}
+.segment button.active { background: var(--surface-3); color: var(--text); }
+
+/* Animation d'entrée des pages (fiable même en arrière-plan) */
+.route-view { animation: page-in 0.28s ease both; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bottom sheet */
+.sheet-fade-enter-active, .sheet-fade-leave-active { transition: opacity 0.22s; }
+.sheet-fade-enter-from, .sheet-fade-leave-to { opacity: 0; }
+.sheet-slide-enter-active, .sheet-slide-leave-active { transition: transform 0.26s cubic-bezier(.22,1,.36,1); }
+.sheet-slide-enter-from, .sheet-slide-leave-to { transform: translateY(100%); }
+
+::-webkit-scrollbar { width: 0; height: 0; }
